@@ -10,7 +10,7 @@ public class DoctorController {
 	@RequestMapping("/doctors")
 	public String welcomeInternaute()  
 	{
-		return "doctors/welcomePage";
+		return "docteurs/welcomePage";
 	}
 	
 }

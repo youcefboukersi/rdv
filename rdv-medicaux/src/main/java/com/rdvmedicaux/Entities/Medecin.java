@@ -21,7 +21,9 @@ public class Medecin {
 	@OneToMany
 	private Collection<Disponibilitees> disponibilitees; // en fonction de ses horaires on élabore le calendrier des rendez-vous
 	private Statut statut; // => si absence => notification des patients qui ont révervé 	 à ne pas oublier les listners
-	
+	private double anneeExperience;
+	@OneToMany
+	private Collection<Formation> formations;
 	
 	
 	public Specialite getCategorie() {
