@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Hey Doctor ...  
+	<h1>Hey Doctor ... </h1>  
 	</br>
 	welcome to your home page ...
 	
