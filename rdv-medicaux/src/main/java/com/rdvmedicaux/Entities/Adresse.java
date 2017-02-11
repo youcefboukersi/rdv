@@ -1,6 +1,9 @@
 package com.rdvmedicaux.Entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -8,13 +11,14 @@ import javax.persistence.Id;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class Adresse {
+public class Adresse implements Serializable{
 
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private double idAdresse;
 	@NotEmpty
 	private String rue,ville;
 	private double numeroRue;
+	@Enumerated
 	private Willya willaya;
 	private String commentaire; // lui laisser indiqué son adresse vu que nous on a pas de réelles adresses
 	

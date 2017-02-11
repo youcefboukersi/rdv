@@ -1,5 +1,6 @@
 package com.rdvmedicaux.Entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -13,26 +14,23 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-public class RendezVous {
+public class RendezVous implements Serializable{
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private double idRendezVous;
 	@OneToOne
-	private Disponibilitees heure;
+	private Disponibilitees heureRDV;
 	@OneToOne
 	private Medecin medecin;
 	@ManyToOne
 	private Patient patient;
 
-	@DateTimeFormat @NotEmpty
-	private Date date;
 	
-	
-	public Disponibilitees getHeure() {
-		return heure;
+	public Disponibilitees getHeureRDV() {
+		return heureRDV;
 	}
-	public void setHeure(Disponibilitees heure) {
-		this.heure = heure;
+	public void setHeureRDV(Disponibilitees heure) {
+		this.heureRDV = heure;
 	}
 	public Medecin getMedecin() {
 		return medecin;
@@ -52,14 +50,12 @@ public class RendezVous {
 	public void setIdRendezVous(double idRendezVous) {
 		this.idRendezVous = idRendezVous;
 	}
-	public Date getDate() {
-		return date;
+	public RendezVous(Disponibilitees heureRDV, Medecin medecin, Patient patient) {
+		super();
+		this.heureRDV = heureRDV;
+		this.medecin = medecin;
+		this.patient = patient;
 	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	
-	
 	
 	
 }

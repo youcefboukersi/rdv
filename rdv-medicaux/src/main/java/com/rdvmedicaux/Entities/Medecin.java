@@ -1,25 +1,31 @@
 package com.rdvmedicaux.Entities;
 
+import java.io.Serializable;
 import java.util.Collection;
-import java.util.Timer;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.CollectionOfElements;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @DiscriminatorValue(value="Docteurs")
-public class Medecin {
+public class Medecin extends Personne implements Serializable{
 	
 	@NotEmpty
 	private Specialite specialite;
-	@NotEmpty
+	@ElementCollection(targetClass=ModePaiement.class)
+	@Enumerated
 	private Collection<ModePaiement> modePaiement;
 	private String commentaire; // parler de lui (description)
 	@OneToMany
 	private Collection<Disponibilitees> disponibilitees; // en fonction de ses horaires on élabore le calendrier des rendez-vous
+	@Enumerated
 	private Statut statut; // => si absence => notification des patients qui ont révervé 	 à ne pas oublier les listners
 	private double anneeExperience;
 	@OneToMany
@@ -32,6 +38,11 @@ public class Medecin {
 
 	public void setCategorie(Specialite specialite) {
 		this.specialite = specialite;
+	}
+
+	public Medecin() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public Collection<ModePaiement> getModePaiement() {
@@ -50,11 +61,11 @@ public class Medecin {
 		this.commentaire = commentaire;
 	}
 
-	public Collection<Disponibilitees> getHorairesTravail() {
+	public Collection<Disponibilitees> getDisponibilitees() {
 		return disponibilitees;
 	}
 
-	public void setHorairesTravail(Collection<Disponibilitees> disponibilitees) {
+	public void setDisponibilitees(Collection<Disponibilitees> disponibilitees) {
 		this.disponibilitees = disponibilitees;
 	}
 

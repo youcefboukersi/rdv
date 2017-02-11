@@ -1,5 +1,6 @@
 package com.rdvmedicaux.Entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -11,20 +12,27 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-public class Disponibilitees {
+public class Disponibilitees implements Serializable{
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private double idHorairesTravail;
-	@NotEmpty
-	private DateTimeFormat heureDebut,heureFin;
+	private double idDispoinibilie;
+	@NotEmpty @DateTimeFormat
+	private Date heureDebut,heureFin;
 	@NotEmpty
 	private double dureeConsultation;
 	@NotEmpty @DateTimeFormat
 	private Date date;
 	@NotEmpty
-	private boolean estReservee,estConfirmee;
+	private boolean estReservee;
+	private boolean estConfirmee;
 	
 	
+	public double getIdDispoinibilie() {
+		return idDispoinibilie;
+	}
+	public void setIdDispoinibilie(double idDispoinibilie) {
+		this.idDispoinibilie = idDispoinibilie;
+	}
 	public Date getDate() {
 		return date;
 	}
@@ -43,22 +51,17 @@ public class Disponibilitees {
 	public void setEstConfirmee(boolean estConfirmee) {
 		this.estConfirmee = estConfirmee;
 	}
-	public double getIdHorairesTravail() {
-		return idHorairesTravail;
-	}
-	public void setIdHorairesTravail(double idHorairesTravail) {
-		this.idHorairesTravail = idHorairesTravail;
-	}
-	public DateTimeFormat getHeureDebut() {
+	
+	public Date getHeureDebut() {
 		return heureDebut;
 	}
-	public void setHeureDebut(DateTimeFormat heureDebut) {
+	public void setHeureDebut(Date heureDebut) {
 		this.heureDebut = heureDebut;
 	}
-	public DateTimeFormat getHeureFin() {
+	public Date getHeureFin() {
 		return heureFin;
 	}
-	public void setHeureFin(DateTimeFormat heureFin) {
+	public void setHeureFin(Date heureFin) {
 		this.heureFin = heureFin;
 	}
 	public double getDureeConsultation() {

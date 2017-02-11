@@ -1,5 +1,6 @@
 package com.rdvmedicaux.Entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.DiscriminatorColumn;
@@ -22,7 +23,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @DiscriminatorColumn(name="TypeUtilisateur",
 discriminatorType=DiscriminatorType.STRING,
 length=10)
-public abstract class Personne {
+public abstract class Personne implements Serializable {
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private double idPersonne;
