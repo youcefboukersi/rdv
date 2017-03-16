@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.rdvmedicaux.Entities.Adresse;
 import com.rdvmedicaux.Entities.Disponibilitees;
 import com.rdvmedicaux.Entities.Medecin;
 import com.rdvmedicaux.Entities.Patient;
@@ -130,6 +131,12 @@ public class DaoImplements implements interfaceDAO {
 	public Medecin ajouterMedecin(Medecin medecin) {
 		em.persist(medecin);
 		return medecin;
+	}
+
+	@Override
+	public Adresse addAdress(Adresse adresse) {
+		em.persist(adresse);
+		return adresse;
 	}
 
 	

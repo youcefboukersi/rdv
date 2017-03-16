@@ -2,6 +2,7 @@ package com.rdvmedicaux.DAO;
 
 import java.util.Collection;
 
+import com.rdvmedicaux.Entities.Adresse;
 import com.rdvmedicaux.Entities.Disponibilitees;
 import com.rdvmedicaux.Entities.Medecin;
 import com.rdvmedicaux.Entities.Personne;
@@ -34,6 +35,9 @@ public interface interfaceDAO {
 	
 	// Ajouter un Medecin
 	public Medecin ajouterMedecin(Medecin medecin);
+	
+	
+	public Adresse addAdress(Adresse adresse);
 	
 	
 }
