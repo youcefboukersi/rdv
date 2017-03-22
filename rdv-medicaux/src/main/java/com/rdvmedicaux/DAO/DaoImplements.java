@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.rdvmedicaux.Entities.Adresse;
 import com.rdvmedicaux.Entities.Disponibilitees;
@@ -17,13 +17,17 @@ import com.rdvmedicaux.Entities.Personne;
 import com.rdvmedicaux.Entities.RendezVous;
 import com.rdvmedicaux.Entities.Statut;
 
+
+@Component
 public class DaoImplements implements interfaceDAO {
 
 	@PersistenceContext
 	private EntityManager em;
 	
-	
-	
+	public EntityManager getEm() {
+		return em;
+	}
+
 	public void setEm(EntityManager em) {
 		this.em = em;
 	}

@@ -15,7 +15,7 @@ public class AppServletInitializer extends AbstractAnnotationConfigDispatcherSer
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
 		// TODO Auto-generated method stub
-		return new Class[] {ApplicationConfig.class};
+		return new Class[] {ApplicationConfig.class, JPaTransactionConfig.class};
 	}
 
 	@Override
