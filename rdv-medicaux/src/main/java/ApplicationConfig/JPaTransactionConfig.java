@@ -79,7 +79,7 @@ public class JPaTransactionConfig {
 	   @Bean 
 		public PasswordEncoder passWord()
 		{
-			return new BCryptPasswordEncoder();
+			return new BCryptPasswordEncoder(16);
 		}
 	   	 
 	   

@@ -66,6 +66,7 @@ public class TestPersistence {
 		patient.setPassword("patient");
 		System.err.println("22222222222222222");
 		dao.addPatient(patient);
+		
 	}
 
 }
