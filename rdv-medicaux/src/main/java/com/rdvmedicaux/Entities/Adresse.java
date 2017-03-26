@@ -13,11 +13,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class Adresse implements Serializable{
 
+	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	private double idAdresse;
+	private Long idAdresse;
 	@NotEmpty
 	private String rue,ville;
-	private double numeroRue;
+	private Integer numeroRue;
 	@Enumerated
 	private Willya willaya;
 	private String commentaire; // lui laisser indiqué son adresse vu que nous on a pas de réelles adresses
@@ -26,7 +27,7 @@ public class Adresse implements Serializable{
 	public double getIdAdresse() {
 		return idAdresse;
 	}
-	public void setIdAdresse(double idAdresse) {
+	public void setIdAdresse(Long idAdresse) {
 		this.idAdresse = idAdresse;
 	}
 	public String getRue() {
@@ -38,7 +39,7 @@ public class Adresse implements Serializable{
 	public double getNumeroRue() {
 		return numeroRue;
 	}
-	public void setNumeroRue(double numeroRue) {
+	public void setNumeroRue(Integer numeroRue) {
 		this.numeroRue = numeroRue;
 	}
 	public String getVille() {
@@ -60,7 +61,18 @@ public class Adresse implements Serializable{
 		this.commentaire = commentaire;
 	}
 	
-	
+
+	public Adresse(String rue, String ville, Integer numeroRue, Willya willaya) {
+		super();
+		this.rue = rue;
+		this.ville = ville;
+		this.numeroRue = numeroRue;
+		this.willaya = willaya;
+	}
+	public Adresse() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 }

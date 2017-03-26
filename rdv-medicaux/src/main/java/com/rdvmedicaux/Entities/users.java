@@ -23,31 +23,47 @@ import org.springframework.format.annotation.DateTimeFormat;
 @DiscriminatorColumn(name="TypeUtilisateur",
 discriminatorType=DiscriminatorType.STRING,
 length=10)
-public abstract class Personne implements Serializable {
+public abstract class users implements Serializable {
 	
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	private double idPersonne;
-	@Size(min=2,max=100) @NotEmpty
+	@Id
+	private String username;
+	private String password;
+	private Long enabled=1L;
+	
+	@Size(min=2,max=100)
 	private String nom, prenom;
-	@DateTimeFormat (pattern="JJ/MM/AAAA") @NotEmpty
+	@DateTimeFormat (pattern="JJ/MM/AAAA")
 	private Date dateNaissance;
-	@NotEmpty
 	private Adresse adresse;	
-	@NotEmpty @Size(min=10,max=10) @Pattern(regexp="(^$|[0-9]{10})")
+	//@NotEmpty @Size(min=10,max=10) @Pattern(regexp="(^$|[0-9]{10})")
 	private double telephone;
-	@NotEmpty @Email
+	@Email
 	private String email;
 	@DateTimeFormat (pattern="JJ/MM/AAAA")
 	private Date dateCreation;
 	
-	//private Collection<RendezVous> listeRendezVous;
-
-	public double getIdPersonne() {
-		return idPersonne;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setIdPersonne(double idPersonne) {
-		this.idPersonne = idPersonne;
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Long getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Long enabled) {
+		this.enabled = enabled;
 	}
 
 	public String getNom() {
@@ -106,12 +122,9 @@ public abstract class Personne implements Serializable {
 		this.dateCreation = dateCreation;
 	}
 
-	public Personne() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Personne(String nom, String prenom, Date dateNaissance, Adresse adresse, double telephone, String email) {
+	
+	public users(String nom, String prenom, Date dateNaissance, Adresse adresse, double telephone, String email,
+			Date dateCreation) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -119,7 +132,12 @@ public abstract class Personne implements Serializable {
 		this.adresse = adresse;
 		this.telephone = telephone;
 		this.email = email;
-		this.dateCreation = new Date();
+		this.dateCreation = dateCreation;
 	}
 	
+	public users() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 }

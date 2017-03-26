@@ -125,13 +125,19 @@
 			<artifactId>spring-data-jpa</artifactId>
 			<version>1.10.2.RELEASE</version>
 		</dependency>
-
+	
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>1.0.0.GA</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.1.0.Final</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
@@ -142,12 +148,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.30</version>
 			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>4.1.0.Final</version>
 		</dependency>
 
 		<dependency>

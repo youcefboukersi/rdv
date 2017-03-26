@@ -17,7 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class RendezVous implements Serializable{
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private double idRendezVous;
+	private Long idRendezVous;
 	@OneToOne
 	private Disponibilitees heureRDV;
 	@OneToOne
@@ -47,15 +47,16 @@ public class RendezVous implements Serializable{
 	public double getIdRendezVous() {
 		return idRendezVous;
 	}
-	public void setIdRendezVous(double idRendezVous) {
-		this.idRendezVous = idRendezVous;
-	}
+	
 	public RendezVous(Disponibilitees heureRDV, Medecin medecin, Patient patient) {
 		super();
 		this.heureRDV = heureRDV;
 		this.medecin = medecin;
 		this.patient = patient;
 	}
-	
+	public RendezVous() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 }

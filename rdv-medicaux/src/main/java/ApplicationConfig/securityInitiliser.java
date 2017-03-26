@@ -5,6 +5,7 @@ import org.springframework.security.web.context.AbstractSecurityWebApplicationIn
 
 // Enregistration du FilterChain
 
+
 public class securityInitiliser extends AbstractSecurityWebApplicationInitializer {
 	
 }

@@ -7,23 +7,31 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rdvmedicaux.Entities.Adresse;
 import com.rdvmedicaux.Entities.Disponibilitees;
+import com.rdvmedicaux.Entities.Formation;
 import com.rdvmedicaux.Entities.Medecin;
 import com.rdvmedicaux.Entities.Patient;
-import com.rdvmedicaux.Entities.Personne;
 import com.rdvmedicaux.Entities.RendezVous;
 import com.rdvmedicaux.Entities.Statut;
-
+import com.rdvmedicaux.Entities.authorities;
+import com.rdvmedicaux.Entities.users;
 
 @Component
+@Transactional
 public class DaoImplements implements interfaceDAO {
 
 	@PersistenceContext
 	private EntityManager em;
 	
+	@Autowired
+	PasswordEncoder passwordEncoder;
+		
 	public EntityManager getEm() {
 		return em;
 	}
@@ -65,7 +73,7 @@ public class DaoImplements implements interfaceDAO {
 	}
 
 	@Override
-	public boolean modifierProfile(Personne medecin) {
+	public boolean modifierProfile(users medecin) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -132,9 +140,41 @@ public class DaoImplements implements interfaceDAO {
 	}
 
 	@Override
-	public Medecin ajouterMedecin(Medecin medecin) {
-		em.persist(medecin);
-		return medecin;
+	public boolean addMedecin(Medecin medecin) {
+		if(usernameExist(medecin.getUsername()))
+			return false;
+		else
+		{
+			medecin.setPassword(passwordEncoder.encode(medecin.getPassword()));
+			authorities roleMedecin = new authorities();
+			roleMedecin.setRole("ROLE_Medecin");
+			roleMedecin.setUser(medecin);
+			em.persist(roleMedecin);
+			em.persist(medecin);
+		}
+		
+		return false;
+	}
+	
+	@Override
+	public boolean addPatient(Patient patient) {
+		
+		if(usernameExist(patient.getUsername()))
+			return false;
+		else
+		{
+			
+			patient.setPassword(passwordEncoder.encode(patient.getPassword()));
+			authorities rolepPatient = new authorities();
+			rolepPatient.setRole("ROLE_Patient");
+			rolepPatient.setUser(patient);
+			em.persist(rolepPatient);
+			System.err.println("EmailExiste5555555555");
+			em.persist(patient);
+			System.err.println("PErsistence complete");
+		}
+		
+		return false;
 	}
 
 	@Override
@@ -142,7 +182,32 @@ public class DaoImplements implements interfaceDAO {
 		em.persist(adresse);
 		return adresse;
 	}
-
 	
+	
+	@Override
+	public boolean addDispoinibilite(Disponibilitees dispo) {
+		em.persist(dispo);
+		return true;
+	}
+
+	@Override
+	public boolean addFormation(Formation form) {
+		em.persist(form);
+		return true;
+	}
+	
+	public boolean usernameExist(String username)
+	{
+		Query q = em.createQuery("select u from users u");
+		
+		Collection<users> users = q.getResultList();
+		for(users u : users)
+		{
+			if (u.getUsername().equals(username))
+				return true;
+		}
+		
+		return false;
+	}	
 
 }

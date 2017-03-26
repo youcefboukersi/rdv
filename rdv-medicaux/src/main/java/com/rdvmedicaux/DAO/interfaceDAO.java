@@ -4,10 +4,12 @@ import java.util.Collection;
 
 import com.rdvmedicaux.Entities.Adresse;
 import com.rdvmedicaux.Entities.Disponibilitees;
+import com.rdvmedicaux.Entities.Formation;
 import com.rdvmedicaux.Entities.Medecin;
-import com.rdvmedicaux.Entities.Personne;
+import com.rdvmedicaux.Entities.Patient;
 import com.rdvmedicaux.Entities.RendezVous;
 import com.rdvmedicaux.Entities.Statut;
+import com.rdvmedicaux.Entities.users;
 
 public interface interfaceDAO {
 	
@@ -19,7 +21,7 @@ public interface interfaceDAO {
 	
 	// Docuteur
 		// // base 
-	public boolean modifierProfile(Personne medecin);
+	public boolean modifierProfile(users medecin);
 	public Collection<RendezVous> voirLesRDV();
 	public boolean modifierStatut(Statut statut);
 	public boolean estReserve(Disponibilitees dispo);
@@ -34,10 +36,12 @@ public interface interfaceDAO {
 	public Collection<RendezVous> ListRDV();
 	
 	// Ajouter un Medecin
-	public Medecin ajouterMedecin(Medecin medecin);
-	
+	public boolean addMedecin(Medecin medecin);
+	public boolean addPatient(Patient patient);
 	
 	public Adresse addAdress(Adresse adresse);
+	public boolean addDispoinibilite(Disponibilitees dispo);
+	public boolean addFormation(Formation form);
 	
 	
 }

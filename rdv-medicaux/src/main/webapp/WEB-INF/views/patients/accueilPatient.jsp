@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h1>Bonjour Patient !! </h1>
+<h1>Patient !! </h1>
  </br>
   	<h2>J'espère que vous allez mieux !!!</h2>
 </body>

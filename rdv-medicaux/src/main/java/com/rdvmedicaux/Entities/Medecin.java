@@ -2,22 +2,21 @@ package com.rdvmedicaux.Entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.CollectionOfElements;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @DiscriminatorValue(value="Docteurs")
-public class Medecin extends Personne implements Serializable{
+public class Medecin extends users implements Serializable{
 	
-	@NotEmpty
+	@Enumerated
 	private Specialite specialite;
 	@ElementCollection(targetClass=ModePaiement.class)
 	@Enumerated
@@ -27,8 +26,8 @@ public class Medecin extends Personne implements Serializable{
 	private Collection<Disponibilitees> disponibilitees; // en fonction de ses horaires on élabore le calendrier des rendez-vous
 	@Enumerated
 	private Statut statut; // => si absence => notification des patients qui ont révervé 	 à ne pas oublier les listners
-	private double anneeExperience;
-	@OneToMany
+	private Integer anneeExperience;
+	@ElementCollection(targetClass=Formation.class)
 	private Collection<Formation> formations;
 	
 	
@@ -40,7 +39,7 @@ public class Medecin extends Personne implements Serializable{
 		this.specialite = specialite;
 	}
 
-	public Medecin() {
+	public Medecin(String string, String string2, Date date, Adresse add, int i, String email, Date date2, Specialite generaliste, ModePaiement cartebancaire, Collection<Disponibilitees> dispos, Statut enservice, int j, Collection<Formation> formations2) {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -75,6 +74,25 @@ public class Medecin extends Personne implements Serializable{
 
 	public void setStatut(Statut statut) {
 		this.statut = statut;
+	}
+
+	
+	public Medecin(String nom, String prenom, Date dateNaissance, Adresse adresse, double telephone, String email,
+			Date dateCreation,Specialite specialite, Collection<ModePaiement> modePaiement,
+			Collection<Disponibilitees> disponibilitees, Statut statut, Integer anneeExperience,
+			Collection<Formation> formations) {
+		super(nom, prenom, dateNaissance, adresse, telephone, email, dateCreation);
+		this.specialite = specialite;
+		this.modePaiement = modePaiement;
+		this.disponibilitees = disponibilitees;
+		this.statut = statut;
+		this.anneeExperience = anneeExperience;
+		this.formations = formations;
+	}
+
+	public Medecin() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	
